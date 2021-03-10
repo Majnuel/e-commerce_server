@@ -1,6 +1,12 @@
 import express, { Application, Request, Response } from 'express'
 const app: Application = express()
 import dotenv from 'dotenv'
+import { checkCartLog, checkProductLog } from '../temp/FSlogic'
+
+
+
+checkCartLog('/fslog/cartslog.txt')
+checkProductLog('/fslog/productslog.txt')
 
 
 //DOTENV
