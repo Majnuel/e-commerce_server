@@ -37,13 +37,11 @@ class Carts {
     }
     getCart(id: string) {
         const cart = this.carts.find(item => item.id == id)
-        // console.log(cart)
         if (!cart) {
             return undefined
         } else {
             return cart;
         }
-
     }
 
     addToCart(cartID: string, product: any) {

@@ -6,8 +6,9 @@ import { products } from '../utils/productsClass'
 const currentDate = new Date();
 const timestamp = currentDate.getTime()
 
-router.get('/', (req, res) => {
-    res.send(products.getProducts())
+router.get('/', async (req, res) => {
+    // console.log('routing', products.getProducts())
+    res.send(await products.getProducts())
 })
 
 router.post('/', (req, res) => {
@@ -17,18 +18,19 @@ router.post('/', (req, res) => {
     res.sendStatus(201)
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
     const id: string = (req.params.id)
-    const product = products.getProduct(id)
+    const product = await products.getProduct(id)
     if (!product) {
         res.sendStatus(404)
     }
-    res.send(product)
+    res.send(await products.getProduct(id))
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
     const id: string = req.params.id
-    const product = products.deleteProduct(id)
+    const product = await products.deleteProduct(id)
+    console.log('router:', product)
     if (!product) {
         res.sendStatus(404)
     } else {
@@ -36,10 +38,11 @@ router.delete('/:id', (req, res) => {
     }
 })
 
-router.patch('/:id', (req, res) => {
+router.patch('/:id', async (req, res) => {
     const id: string = req.params.id
     const body = req.body
-    const product = products.updateProduct(id, body)
+    const product = await products.updateProduct(id, body)
+    console.log('router:', product)
     if (!product) {
         res.sendStatus(404)
     }

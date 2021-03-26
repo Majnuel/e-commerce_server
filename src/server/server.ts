@@ -2,6 +2,7 @@ import express, { Application, Request, Response } from 'express'
 const app: Application = express()
 import dotenv from 'dotenv'
 import { checkCartLog, checkProductLog } from '../temp/FSlogic'
+const productModel = require('../DBmodels/productsModel')
 
 
 
@@ -25,6 +26,12 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => {
     console.log("Server running on port", PORT)
+    const mongoose = require('mongoose');
+    mongoose.connect('mongodb://localhost:27017/ecommerce',
+        {
+            useNewUrlParser: true, useUnifiedTopology: true
+        }
+    )
 })
 
 app.use('/products', require('../routing/products'))
