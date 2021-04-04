@@ -1,14 +1,14 @@
 import { isCart } from '../utils/cartInterface'
 import { isProduct } from './productInterface'
-import fs from 'fs'
+
 
 //EL ID DEL CARRO VA A SER EL ID DEL USUARIO
-const writeData = (source: string) => {
-    fs.writeFile(process.cwd() + '/src/temp/fslog/cartslog.txt', source, (err) => {
-        console.log(err)
-    })
-    return
-}
+// const writeData = (source: string) => {
+//     fs.writeFile(process.cwd() + '/src/temp/fslog/cartslog.txt', source, (err) => {
+//         console.log(err)
+//     })
+//     return
+// }
 
 class Carts {
     carts: isCart[]
@@ -30,10 +30,6 @@ class Carts {
             products: []
         }
         this.carts.push(newCart)
-        const stringified = JSON.stringify(this.carts)
-        writeData(stringified)
-
-
     }
     getCart(id: string) {
         const cart = this.carts.find(item => item.id == id)
@@ -52,8 +48,6 @@ class Carts {
             product.quantity = 1
             cart.products.push(product)
         }
-        const stringified = JSON.stringify(this.carts)
-        writeData(stringified)
     }
 
     removeFromCart(cartID: string, product: any) {
@@ -71,8 +65,6 @@ class Carts {
                 cart.products = cart.products.filter(items => itemToRemove.id != itemToRemove.id)
             }
         }
-        const stringified = JSON.stringify(this.carts)
-        writeData(stringified)
     }
 }
 

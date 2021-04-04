@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log("Server running on port", PORT)
     const mongoose = require('mongoose');
-    mongoose.connect('mongodb://localhost:27017/ecommerce',
+    mongoose.connect('mongodb+srv://emma:borinda@cluster0.ydcxa.mongodb.net/productsDB?retryWrites=true&w=majority',
         {
             useNewUrlParser: true, useUnifiedTopology: true
         }
